@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bf_nx7m0sd(kbofoqv1g*ba))$ux)2(ju#mr-kr5#21@5iql_d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -90,14 +90,19 @@ SITE_ID = 3
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
-ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
+ACCOUNT_LOGIN_METHODS = {'username', 'email'}
 
+ACCOUNT_SIGNUP_FIELDS = [
+    'email*',
+    'email2*',
+    'username*',
+    'password1*',
+    'password2*',
+]
 WSGI_APPLICATION = 'boutique_ado.wsgi.application'
 
 # Database
